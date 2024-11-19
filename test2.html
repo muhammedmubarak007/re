@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tedx FC</title>
+    <style>
+      .error-message {
+        color: red;
+        font-size: 0.9em;
+      }
+
+      .step {
+        display: none;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: all 0.3s ease-in-out;
+      }
+
+      .step.active {
+        display: block;
+        opacity: 1;
+        transform: translateX(0);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        background-color: black;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 32px;
+        height: 100vh;
+        background-image: url("D:/pyment/image/Frame.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: radial-gradient(rgb(94, 14, 14) 2%, black 40%);
+      }
+
+      .form-container {
+        width: 100%;
+        max-width: 540px;
+        background-color: rgba(12, 12, 12, 0.41);
+        padding: 40px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        border: 1px solid #ff5050;
+        border-radius: 10px;
+        box-sizing: border-box;
+      }
+
+      h2 {
+        color: #eeeeee;
+        font-weight: 500;
+        font-size: 22px;
+        text-align: left;
+        margin-bottom: 10px;
+      }
+
+      h3 {
+        font-weight: 100;
+        text-align: left;
+        margin-bottom: 15px;
+        font-size: 13px;
+        color: #eeeeee;
+      }
+
+      hr {
+        border: 1px solid #ccc;
+        margin: 15px 0 15px 0;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+        text-align: left;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 12px;
+      }
+
+      input {
+        margin-bottom: 10px;
+      }
+
+      select,
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: white;
+        color: black;
+        box-sizing: border-box;
+        font-size: 14px;
+      }
+
+      select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        position: relative;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23000000' d='M2 0L0 2h4z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 10px;
+        padding-right: 30px;
+      }
+
+      input::placeholder {
+        color: gray;
+      }
+
+      .button {
+        border: none;
+        width: 100%;
+        padding: 12px;
+        margin-top: 20px;
+        background-color: #222020;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        display: inline-block;
+        box-sizing: border-box;
+      }
+
+      .button:hover {
+        background-color: #ed525269;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 480px;
+        background-color: rgba(12, 12, 12, 0.8);
+        padding: 17px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+        border-radius: 10px;
+        /* display: flex; */
+        /* flex-direction: column; */
+        /* align-items: center; */
+        box-sizing: border-box;
+        overflow-x: hidden;
+      }
+
+      .heading {
+        font-size: 20px;
+        font-weight: bold;
+        text-align: left;
+        width: 100%;
+        margin-bottom: 13px;
+        overflow-wrap: break-word;
+      }
+
+      .subheading {
+        font-size: 14px;
+        margin-bottom: 18px;
+        text-align: left;
+        width: 100%;
+        overflow-wrap: break-word;
+      }
+
+      .divider {
+        width: 100%;
+        max-width: 420px;
+        height: 1px;
+        background-color: #ffffff;
+        margin: 16px 0;
+      }
+
+      .ticket-option {
+        width: 100%;
+        max-width: 424px;
+        padding: 16px;
+        margin: 8px 0;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 2px solid transparent;
+        border-radius: 8px;
+        color: #ffffff;
+        font-size: 18px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: border-color 0.3s ease;
+        box-sizing: border-box;
+        overflow-x: hidden;
+      }
+
+      .ticket-option .ticket-info {
+        text-align: center;
+        width: 100%;
+      }
+
+      .ticket-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .ticket-info h3 {
+        font-size: 20px;
+        margin-top: 10px;
+        margin: 0 0 5px;
+      }
+
+      .ticket-info h2 {
+        font-size: 35px;
+        font-weight: 600;
+        margin: 5px 0;
+      }
+
+      .ticket-option .description {
+        font-weight: 200;
+        text-align: left;
+        width: 100%;
+        margin-top: 10px;
+        overflow-wrap: break-word;
+      }
+
+      .ticket-option.selected {
+        border-color: #ffffff;
+      }
+
+      .ticket-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        border-color: white;
+      }
+
+      /* Button container styles */
+      .button-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      .button-container button {
+        flex: 1;
+        padding: 12px 20px;
+        background-color: transparent;
+        border: 1px solid #2a2322;
+        border-radius: 5px;
+        color: #ffffff;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 0 10px;
+        transition: background-color 0.3s ease;
+      }
+
+      .button-container button:hover {
+        background-color: #2a2322;
+      }
+
+      /* Responsive adjustments for 1st section*/
+      @media (max-width: 768px) {
+        body {
+          padding: 15px;
+        }
+
+        .form-container {
+          padding: 20px;
+          width: 100%;
+          max-width: 400px;
+        }
+
+        h2 {
+          font-size: 22px;
+        }
+
+        h3 {
+          font-size: 12px;
+        }
+
+        .button {
+          font-size: 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .form-container {
+          padding: 15px;
+        max-width: 340px;
+        margin: 0px 20px;
+        }
+
+        h2 {
+          margin: 10px 0px 10px 0px;
+        font-weight: 500;
+        font-size: 22px;
+        }
+
+        h3 {
+          font-weight: 100;
+        line-height: 16px;
+        margin: 0px;
+        font-size: 11.5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+          font-size: 12px;
+        padding: 8px;
+        margin: 0px;
+        }
+
+        .button {
+          margin: 10px 0px 5px 0px;
+        padding: 10px;
+        font-size: 14px;
+        }
+        body{
+          padding: 25px;
+        }
+      }
+
+      /* Responsive adjustments for 2nd section*/
+      @media (max-width: 768px) {
+        /* .container {
+          padding: 15px;
+          max-width: 100%;
+          margin-left: 20px;
+          margin-right: 20px;
+        } */
+        /* .heading {
+          font-size: 20px;
+        }
+        .subheading {
+          font-size: 14px;
+          margin-bottom: 12px;
+        } */
+        /* .ticket-option {
+          padding: 12px;
+          font-size: 16px;
+        } */
+        .button-container button {
+          font-size: 14px;
+          padding: 10px 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        /*.container {
+          padding: 20px;
+          margin: 0px 20px;
+        }*/
+        /* .heading {
+          font-size: 18px;
+        }
+        .subheading {
+          font-size: 12px;
+        } */
+        /* .ticket-option {
+          padding: 10px;
+          font-size: 14px;
+        } */
+        .ticket-option .ticket-info h3 {
+          font-size: 11px;
+        }
+
+        .ticket-option .ticket-info h2 {
+          font-size: 20px;
+        }
+
+        .description li {
+          font-size: 11px;
+        }
+
+        .button-container {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .button-container button {
+          margin: 0;
+          padding: 12px 0;
+          width: 100%;
+        }
+        .sup {
+          font-size: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Step 1 -->
+    <div class="form-container">
+      <div id="step-1" class="step active">
+        <h2>Participant Registration Form</h2>
+        <h3>
+          Please fill the form below keenly and let us know if you give go ahead
+          for this participation
+        </h3>
+        <hr />
+        <form id="step1Form">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              placeholder="Full Name"
+            />
+            <span class="error-message" id="nameError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              placeholder="Phone Number"
+            />
+            <span class="error-message" id="phoneError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="Email"
+            />
+            <span class="error-message" id="emailError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category:</label>
+            <select id="category" name="category" onchange="hideDummyOption()">
+              <option value="" disabled selected>Select an option</option>
+              <option value="Veg">Veg</option>
+              <option value="Non Veg">Non Veg</option>
+            </select>
+          </div>
+
+          <button type="button" id="next-btn" class="button">Next</button>
+        </form>
+      </div>
+      <!-- Step 2 -->
+      <div id="step-2" class="step container">
+        <div class="heading">Ticket Type</div>
+        <div class="subheading">
+          Select a ticket type to register for the event.
+        </div>
+        <div class="divider"></div>
+        <form id="step2Form">
+          <div id="ticketOptions" class="ticket-options">
+            <div
+              class="ticket-card ticket-option"
+              data-value="Farookials"
+              onclick="selectTicket(this)"
+            >
+              <div class="ticket-info">
+                <h3>Student Ticket</h3>
+                <h2><sup class="sup">₹</sup>700</h2>
+              </div>
+
+              <div class="description">
+                <ul>
+                  <li>Only for College students</li>
+                </ul>
+              </div>
+            </div>
+
+            <div
+              class="ticket-card ticket-option"
+              data-value="TEDx General"
+              onclick="selectTicket(this)"
+            >
+              <div class="ticket-info">
+                <h3>General Ticket</h3>
+                <h2><sup class="sup">₹</sup>1000</h2>
+              </div>
+
+              <div class="description">
+                <ul>
+                  <li>General Tedx Ticket</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <input type="hidden" id="ticketType" name="ticketType" />
+
+          <div class="button-container">
+            <button type="button" id="backButton">Back</button>
+            <button type="submit">Pay Now!</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+      function hideDummyOption() {
+        const selectElement = document.getElementById("ticketSelect");
+        const dummyOption = selectElement.querySelector('option[value=""]');
+
+        if (selectElement.value !== "") {
+          dummyOption.style.display = "none"; // Hide the dummy option
+        }
+      }
+
+      // Function to handle ticket selection
+      function selectTicket(card) {
+        // Remove 'selected' class from all ticket cards
+        const allCards = document.querySelectorAll(".ticket-card");
+        allCards.forEach((c) => c.classList.remove("selected"));
+
+        // Add 'selected' class to the clicked card
+        card.classList.add("selected");
+
+        // Get the value of the selected ticket and set the hidden input
+        ticketType = card.getAttribute("data-value");
+        document.getElementById("ticketType").value = ticketType;
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        const step1 = document.getElementById("step-1");
+        const step2 = document.getElementById("step-2");
+        const nextBtn = document.getElementById("next-btn");
+        const backButton = document.getElementById("backButton");
+
+        const nameInput = document.getElementById("name");
+        const phoneInput = document.getElementById("phone");
+        const emailInput = document.getElementById("email");
+        const nameError = document.getElementById("nameError");
+        const phoneError = document.getElementById("phoneError");
+        const emailError = document.getElementById("emailError");
+
+        const namePattern = /^[A-Za-z\s]+$/;
+        const phonePattern = /^[0-9]{10}$/;
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        let ticketType = "";
+
+        nameInput.addEventListener("input", () => {
+          nameError.textContent =
+            nameInput.value.trim() === ""
+              ? "Name is required."
+              : !namePattern.test(nameInput.value)
+              ? "Name can only contain letters and spaces."
+              : nameInput.value.length < 2
+              ? "Name must be at least 2 characters."
+              : "";
+        });
+
+        phoneInput.addEventListener("input", () => {
+          phoneError.textContent = phonePattern.test(phoneInput.value)
+            ? ""
+            : "Enter a valid 10-digit phone number.";
+        });
+
+        emailInput.addEventListener("input", () => {
+          emailError.textContent = emailPattern.test(emailInput.value)
+            ? ""
+            : "Enter a valid email address.";
+        });
+
+        nextBtn.addEventListener("click", () => {
+          if (
+            !namePattern.test(nameInput.value) ||
+            !phonePattern.test(phoneInput.value) ||
+            !emailPattern.test(emailInput.value)
+          ) {
+            alert("Please complete the fields before proceeding.");
+          } else {
+            step1.classList.remove("active");
+            step2.classList.add("active");
+          }
+        });
+
+        backButton.addEventListener("click", () => {
+          step2.classList.remove("active");
+          step1.classList.add("active");
+        });
+
+        document
+          .getElementById("step2Form")
+          .addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const category = document.getElementById("category").value;
+            const ticketType = document.getElementById("ticketType").value;
+
+            let ticketData = {};
+            if (ticketType === "TEDx General") {
+              ticketData = {
+                ticket_id: "8622937a-e2f1-4e0f-9a2c-5c0b290b03b3",
+                count: 1,
+                my_ticket: true,
+              };
+            } else if (ticketType === "Farookials") {
+              ticketData = {
+                ticket_id: "b2497619-a185-4e10-b9c1-2610e3076a5c",
+                count: 1,
+                my_ticket: true,
+              };
+            }
+
+            const formData = new FormData();
+            formData.append("name", nameInput.value);
+            formData.append("phone", phoneInput.value);
+            formData.append("email", emailInput.value);
+            formData.append("category", category);
+            formData.append("tickets[]", JSON.stringify(ticketData));
+
+            try {
+              const response = await fetch(
+                "https://api.buildnship.in/makemypass/public-form/8b46f9ce-8d86-4806-abe2-7ec6710ba59a/submit/",
+                {
+                  method: "POST",
+                  body: formData,
+                }
+              );
+
+              const responseData = await response.json();
+
+              if (response.ok && !responseData.hasError) {
+                const order = responseData.response;
+                const options = {
+                  key: order.gateway_key,
+                  amount: order.amount,
+                  currency: order.currency,
+                  order_id: order.id,
+                  handler: async function (paymentResponse) {
+                    const paymentData = {
+                      order_id: paymentResponse.razorpay_order_id,
+                      payment_id: paymentResponse.razorpay_payment_id,
+                    };
+
+                    const validationResponse = await fetch(
+                      "https://api.buildnship.in/makemypass/public-form/validate-payment/",
+                      {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(paymentData),
+                      }
+                    );
+
+                    const validationResult = await validationResponse.json();
+
+                    if (validationResponse.ok && !validationResult.hasError) {
+                      alert("Payment verified and successful!");
+                    } else {
+                      alert(
+                        "Payment verification failed: " +
+                          (validationResult.message || "Unknown error")
+                      );
+                    }
+                  },
+                  theme: {
+                    color: "#F37254",
+                  },
+                };
+
+                const rzp = new Razorpay(options);
+                rzp.open();
+              } else {
+                const errorMessage =
+                  responseData.response.message?.email?.[0] ||
+                  "An error occurred. Please try again.";
+                alert("Error: " + errorMessage);
+              }
+            } catch (error) {
+              console.error("Network error:", error);
+              alert("There was a network error. Please try again.");
+            }
+          });
+      });
+    </script>
+  </body>
+</html>
