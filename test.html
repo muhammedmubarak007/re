@@ -29,25 +29,27 @@
         background-color: black;
         margin: 0;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: 32px;
-        height: 100vh;
-        background-image: url("D:/pyment/image/Frame.png");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        color: #ffffff;
-        font-family: Arial, sans-serif;
-        text-align: center;
-        background: radial-gradient(rgb(94, 14, 14) 2%, black 40%);
+        background-color: black;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 32px; /* Adds 32px gap between divs */
+            height: 100vh;
+            background-image: url("./assets/image/Frame.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: rgb(255, 255, 255); /* Default text color */
+            font-family: Arial, sans-serif;
+            text-align: center;
       }
 
       .form-container {
         width: 100%;
         max-width: 540px;
-        background-color: rgba(12, 12, 12, 0.41);
+        background-color: rgba(12, 12, 12, 0.8);
         padding: 40px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
         border: 1px solid #ff5050;
@@ -142,131 +144,124 @@
         background-color: #ed525269;
       }
 
-      .container {
-        width: 100%;
-        max-width: 480px;
-        background-color: rgba(12, 12, 12, 0.8);
-        padding: 17px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 
-        border-radius: 10px;
-        /* display: flex; */
-        /* flex-direction: column; */
-        /* align-items: center; */
-        box-sizing: border-box;
-        overflow-x: hidden;
-      }
 
-      .heading {
-        font-size: 20px;
-        font-weight: bold;
+      /*step 2*/
+        .heading {
+            font-weight: bold;
         text-align: left;
-        width: 100%;
-        margin-bottom: 13px;
-        overflow-wrap: break-word;
-      }
-
-      .subheading {
-        font-size: 14px;
-        margin-bottom: 18px;
-        text-align: left;
-        width: 100%;
-        overflow-wrap: break-word;
-      }
-
-      .divider {
-        width: 100%;
-        max-width: 420px;
-        height: 1px;
-        background-color: #ffffff;
-        margin: 16px 0;
-      }
-
-      .ticket-option {
-        width: 100%;
-        max-width: 424px;
-        padding: 16px;
-        margin: 8px 0;
-        background-color: rgba(255, 255, 255, 0.1);
-        border: 2px solid transparent;
-        border-radius: 8px;
-        color: #ffffff;
-        font-size: 18px;
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: border-color 0.3s ease;
-        box-sizing: border-box;
-        overflow-x: hidden;
-      }
-
-      .ticket-option .ticket-info {
-        text-align: center;
-        width: 100%;
-      }
-
-      .ticket-info {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .ticket-info h3 {
         font-size: 20px;
-        margin-top: 10px;
-        margin: 0 0 5px;
-      }
+        }
 
-      .ticket-info h2 {
-        font-size: 35px;
+        .subheading {
+            font-size: 16px;
+            text-align: left;
+        }
+
+        .divider {
+            margin-top: 15px;
+    margin-bottom: 20px;
+    height: 1px;
+    background: #fff;
+        }
+
+        .ticket-option {
+           margin-bottom: 15px;
+            background: rgb(249 249 249 / 7%);
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .ticket-option:hover {
+            border-color: #FF5050;
+        }
+
+        .ticket-option.selected {
+            border-color: #fff;
+        }
+
+        .ticket-info h3 {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .ticket-info h2 {
+            font-size: 32px;
+            margin: 5px 0;
+        }
+
+        .description p {
+            font-size: 14px;
+            margin: 5px 0 0;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px; /* Adds spacing between buttons */
+        }
+
+        .button-container button {
+            flex: 1;
+            padding: 10px;
+            background: rgb(249 249 249 / 7%);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background: #FF2E2E;
+        }
+
+        @media (max-width: 768px) {
+            .heading {
+                font-size: 20px;
+            }
+
+            .subheading {
+                margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 12px;
+            }
+
+            .ticket-info h2 {
+                text-align: center;
+        padding: 10px;
+        margin: 0px;
         font-weight: 600;
-        margin: 5px 0;
-      }
+        font-size: 32px;
+            }
 
-      .ticket-option .description {
-        font-weight: 200;
-        text-align: left;
-        width: 100%;
-        margin-top: 10px;
-        overflow-wrap: break-word;
-      }
-
-      .ticket-option.selected {
-        border-color: #ffffff;
-      }
-
-      .ticket-card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        border-color: white;
-      }
-
-      /* Button container styles */
-      .button-container {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        margin-top: 20px;
-      }
-
-      .button-container button {
-        flex: 1;
-        padding: 12px 20px;
-        background-color: transparent;
-        border: 1px solid #2a2322;
-        border-radius: 5px;
-        color: #ffffff;
+            .ticket-info h3 {
+                text-align: center;
+        padding-top: 10px;
+        font-weight: 100;
         font-size: 16px;
-        cursor: pointer;
-        margin: 0 10px;
-        transition: background-color 0.3s ease;
-      }
+            }
 
-      .button-container button:hover {
-        background-color: #2a2322;
-      }
+            .description p {
+                margin: 0px;
+        padding-left: 10px;
+        padding-bottom: 10px;
+        text-align: left;
+        font-size: 10px;
+            }
+        }
+        sup{
+            font-size: 22px;
+        }
+
+
+
+
+
+
 
       /* Responsive adjustments for 1st section*/
       @media (max-width: 768px) {
@@ -295,9 +290,9 @@
 
       @media (max-width: 480px) {
         .form-container {
-          padding: 15px;
-        max-width: 340px;
-        margin: 0px 20px;
+            padding: 20px;
+        max-width: 350px;
+        margin: 0px 0px;
         }
 
         h2 {
@@ -328,75 +323,14 @@
         font-size: 14px;
         }
         body{
-          padding: 25px;
+            padding-left: 25px;
+            padding-right: 25px;
         }
       }
 
       /* Responsive adjustments for 2nd section*/
-      @media (max-width: 768px) {
-        /* .container {
-          padding: 15px;
-          max-width: 100%;
-          margin-left: 20px;
-          margin-right: 20px;
-        } */
-        /* .heading {
-          font-size: 20px;
-        }
-        .subheading {
-          font-size: 14px;
-          margin-bottom: 12px;
-        } */
-        /* .ticket-option {
-          padding: 12px;
-          font-size: 16px;
-        } */
-        .button-container button {
-          font-size: 14px;
-          padding: 10px 15px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        /*.container {
-          padding: 20px;
-          margin: 0px 20px;
-        }*/
-        /* .heading {
-          font-size: 18px;
-        }
-        .subheading {
-          font-size: 12px;
-        } */
-        /* .ticket-option {
-          padding: 10px;
-          font-size: 14px;
-        } */
-        .ticket-option .ticket-info h3 {
-          font-size: 11px;
-        }
-
-        .ticket-option .ticket-info h2 {
-          font-size: 20px;
-        }
-
-        .description li {
-          font-size: 11px;
-        }
-
-        .button-container {
-          flex-direction: column;
-          gap: 10px;
-        }
-        .button-container button {
-          margin: 0;
-          padding: 12px 0;
-          width: 100%;
-        }
-        .sup {
-          font-size: 10px;
-        }
-      }
+      
+      
     </style>
   </head>
   <body>
@@ -461,55 +395,40 @@
       <!-- Step 2 -->
       <div id="step-2" class="step container">
         <div class="heading">Ticket Type</div>
-        <div class="subheading">
-          Select a ticket type to register for the event.
+        <div class="subheading">Select a ticket type to register for the event.</div>
+        
+        <div class="divider">
+
         </div>
-        <div class="divider"></div>
         <form id="step2Form">
-          <div id="ticketOptions" class="ticket-options">
-            <div
-              class="ticket-card ticket-option"
-              data-value="Farookials"
-              onclick="selectTicket(this)"
-            >
-              <div class="ticket-info">
-                <h3>Student Ticket</h3>
-                <h2><sup class="sup">₹</sup>700</h2>
-              </div>
 
-              <div class="description">
-                <ul>
-                  <li>Only for College students</li>
-                </ul>
-              </div>
-            </div>
-
-            <div
-              class="ticket-card ticket-option"
-              data-value="TEDx General"
-              onclick="selectTicket(this)"
-            >
-              <div class="ticket-info">
+        <div class="ticket-card ticket-option"  data-value="TEDx General" onclick="selectTicket(this)">
+            <div class="ticket-info">
                 <h3>General Ticket</h3>
-                <h2><sup class="sup">₹</sup>1000</h2>
-              </div>
-
-              <div class="description">
-                <ul>
-                  <li>General Tedx Ticket</li>
-                </ul>
-              </div>
+                <h2><sup>₹</sup>1000</h2>
             </div>
-          </div>
+            <div class="description">
+                <p>• General Tedx ticket*</p>
+            </div>
+        </div>
+        
+        <div class="ticket-card ticket-option" data-value="TEDx General"onclick="selectTicket(this)">
+            <div class="ticket-info">
+                <h3>Student Ticket</h3>
+                <h2><sup>₹</sup>700</h2>
+            </div>
+            <div class="description">
+                <p>• Only for College students*</p>
+            </div>
+        </div>
 
-          <input type="hidden" id="ticketType" name="ticketType" />
-
-          <div class="button-container">
+        <input type="hidden" id="ticketType" name="ticketType" />
+        
+        <div class="button-container">
             <button type="button" id="backButton">Back</button>
             <button type="submit">Pay Now!</button>
-          </div>
-        </form>
-      </div>
+        </div></form>
+    </div>
     </div>
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
